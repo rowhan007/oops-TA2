@@ -1,0 +1,39 @@
+class Person {
+    String name;
+    int age;
+
+    // Constructor Overloading
+    Person() {
+        name = "Unknown";
+        age = 0;
+    }
+
+    Person(String n, int a) {
+        name = n;
+        age = a;
+    }
+
+    void display() {
+        System.out.println("Name: " + name + ", Age: " + age);
+    }
+
+    // finalize() simulates destructor (not recommended in practice)
+    protected void finalize() {
+        System.out.println("Destructor called for: " + name);
+    }
+}
+
+public class Main2 {
+    public static void main(String[] args) {
+        Person p1 = new Person();
+        Person p2 = new Person("Alice", 25);
+
+        p1.display();
+        p2.display();
+
+        p1 = null; // Eligible for garbage collection
+        p2 = null;
+
+        System.gc(); // Requesting JVM to call garbage collector
+    }
+}
